@@ -4,11 +4,11 @@ require_once "{$_SERVER['DOCUMENT_ROOT']}/Modules/YouTube.php";
 $YouTube = new YouTube();
 if (json_decode(file_get_contents("php://input")) != null) {
     if (!empty(json_decode(file_get_contents("php://input"))->videoURL)) {
-        $Youtube->initialize();
+        $YouTube->initialize();
     } else {
         $json = array(
             "success" => "failure",
-            "url" => "{$Youtube->domain}/Register",
+            "url" => "{$YouTube->domain}/",
             "message" => "The form must be completely filled!"
         );
         header('Content-Type: application/json');
@@ -17,7 +17,7 @@ if (json_decode(file_get_contents("php://input")) != null) {
 } else {
     $json = array(
         "success" => "failure",
-        "url" => "{$Youtube->domain}/Register",
+        "url" => "{$YouTube->domain}/",
         "message" => "The form must be completely filled!"
     );
     header('Content-Type: application/json');
