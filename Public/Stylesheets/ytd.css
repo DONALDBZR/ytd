@@ -44,8 +44,7 @@ body {
     margin: calc(var(--percentage) * 0);
     font-size: var(--percentage);
 }
-#http404 header h1,
-#homepage header h1 {
+#http404 header h1 {
     text-align: center;
     font-size: calc(var(--percentage) * 2);
     margin: calc(var(--percentage) * 0);
@@ -56,21 +55,65 @@ body {
 #http404 header #code {
     color: var(--color3);
 }
+#homepage header {
+    display: flex;
+    justify-content: center;
+}
+#homepage header div {
+    font-size: calc(var(--percentage) * 2);
+}
+#homepage header #label {
+    font-family: var(--proximaNova);
+}
+#homepage header #logo {
+    color: var(--color3);
+    margin-left: calc(var(--percentage) * 0.01);
+}
 #homepage main {
     display: flex;
-    justify-content: space-evenly;
-    margin-top: calc(var(--percentage) * 0.01);
+    justify-content: center;
 }
-#homepage main a {
-    font-family: var(--proximaNova);
-    font-size: calc(var(--percentage) * 1.8);
-    text-decoration: none;
-    font-weight: bold;
+#homepage main form {
+    width: calc(var(--percentage) / 3);
     background-color: var(--color2);
-    color: var(--color1);
-    padding: calc(var(--percentage) * 0.1) calc(var(--percentage) * 0.2);
+    padding: calc(var(--percentage) * 0.01);
 }
-#homepage main a:hover {
+#homepage main form #name {
+    color: var(--color1);
+    font-family: var(--sourceCodePro);
+    font-size: calc(var(--percentage) * 2);
+    text-align: center;
+}
+#homepage main form input {
+    margin: calc(var(--percentage) * 0.01) calc(var(--percentage) * 0.02);
+    width: calc(var(--percentage) * 0.94);
+    font-family: var(--proximaNova);
+    font-size: var(--percentage);
+    color: var(--color1);
+}
+#homepage main form #button {
+    display: flex;
+    justify-content: center;
+    margin: calc(var(--percentage) * 0.01) calc(var(--percentage) * 0);
+}
+#homepage main form #button button {
+    font-family: var(--proximaNova);
+    font-size: calc(var(--percentage) * 1.1);
+    width: calc(var(--percentage) * 0.96);
     background-color: var(--color1);
     color: var(--color2);
+    font-weight: bold;
+    border: none;
+    padding: calc(var(--percentage) * 0.02) calc(var(--percentage) * 0);
+}
+#homepage main form #serverRendering h1 {
+    font-size: calc(var(--percentage) * 1.21);
+    font-family: var(--proximaNova);
+    text-align: center;
+}
+#success {
+    color: var(--color4);
+}
+#failure {
+    color: var(--color3);
 }

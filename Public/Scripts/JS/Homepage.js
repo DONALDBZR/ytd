@@ -85,8 +85,8 @@ class Header extends Application {
     render() {
         return (
             <header>
-                <div class="label">YouTube Downloader</div>
-                <div>
+                <div id="label">YouTube Downloader</div>
+                <div id="logo">
                     <i class="fab fa-youtube"></i>
                 </div>
             </header>
@@ -112,7 +112,7 @@ class Form extends Application {
     render() {
         return (
             <form method="POST" onSubmit={this.handleSubmit.bind(this)}>
-                <div class="label">Download Form</div>
+                <div id="name">Download Form</div>
                 <input
                     type="text"
                     name="videoURL"
