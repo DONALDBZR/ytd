@@ -122,7 +122,7 @@ class Form extends Application {
                     required
                 />
                 <div id="button">
-                    <button>Register</button>
+                    <button>Download</button>
                 </div>
                 <div id="serverRendering">
                     <h1 id={this.state.success}>{this.state.message}</h1>

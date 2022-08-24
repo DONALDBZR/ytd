@@ -58,7 +58,7 @@ class YouTube
      */
     public function getVideoInfo()
     {
-        return file_get_contents("https://www.youtube.com/get_video_info?video_id={$this->extractVideoId($this->getUrl())}&cpn=CouQulsSRICzWn5E&eurl&el=adunit");
+        return file_get_contents("https://www.youtube.com/get_video_info?video_id={$this->extractVideoId($this->getUrl())}");
     }
     /**
      * Extracting the Video's ID
