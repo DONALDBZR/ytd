@@ -105,6 +105,11 @@ body {
     font-weight: bold;
     border: none;
     padding: calc(var(--percentage) * 0.02) calc(var(--percentage) * 0);
+    cursor: pointer;
+}
+#homepage main form #button button:hover {
+    background-color: var(--color2);
+    color: var(--color1);
 }
 #homepage main form #serverRendering h1 {
     font-size: calc(var(--percentage) * 1.21);
