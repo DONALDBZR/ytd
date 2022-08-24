@@ -1,2 +1,0 @@
-# ytd
-A YouTube Downloader
