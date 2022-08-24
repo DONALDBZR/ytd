@@ -8,4 +8,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 break;
         }
         break;
+    case 'POST':
+        switch ($_SERVER['REQUEST_URI']) {
+            case '/':
+                $Router = new Router("GET", "/", "/Controllers/Homepage.php");
+                break;
+        }
+        break;
 }
