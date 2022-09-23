@@ -2,6 +2,25 @@
  * The user interface that is being rendered
  */
 class Application extends React.Component {
+    constructor(props) {
+        super(props);
+        /**
+         * The states of the properties of the component
+         */
+    }
+    /**
+     * Retriecing the JSON that is sent by the back-end for the front-end to use
+     */
+    retrieveData() {
+        fetch("/Downloads", {
+            method: "GET"
+        })
+            .then((response) => response.json())
+            .then((data) => console.log(data));
+    }
+    componentDidMount() { 
+        this.retrieveData()
+    }
     /**
      * @returns {JSX} Component
      */
