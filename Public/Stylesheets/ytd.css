@@ -5,12 +5,12 @@
 }
 #homepage header,
 #homepage main,
-#downloads header {
+#dashboard header {
     display: flex;
     justify-content: center;
 }
 #homepage header i,
-#downloads header a {
+#dashboard header a {
     color: var(--color1);
 }
 #homepage main a {
@@ -20,10 +20,10 @@
 #homepage main a:hover {
     color: var(--color1);
 }
-#downloads header a {
+#dashboard header a {
     text-decoration: none;
     opacity: calc(var(--percentage) / 2);
 }
-#downloads header a:hover {
+#dashboard header a:hover {
     opacity: var(--percentage);
 }

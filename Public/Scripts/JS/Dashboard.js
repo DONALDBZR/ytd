@@ -33,4 +33,4 @@ class Main extends Application {
         );
     }
 }
-ReactDOM.render(<Application />, document.getElementById("downloads"));
+ReactDOM.render(<Application />, document.getElementById("dashboard"));

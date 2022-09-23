@@ -9,7 +9,7 @@ body {
     font-size: var(--textSize);
 }
 #homepage header i,
-#downloads header a {
+#dashboard header a {
     font-size: calc(var(--textSize) * 4);
 }
 #homepage main {
