@@ -1,0 +1,20 @@
+:root {
+    --percentage: 100%;
+    --pixelate: 1080px;
+    --tablet: 1.21;
+    --textSize: calc(var(--percentage) * var(--tablet));
+}
+body {
+    margin: calc(var(--percentage) * 0);
+    font-size: var(--textSize);
+}
+#homepage header i,
+#downloads header a {
+    font-size: calc(var(--textSize) * 4);
+}
+#homepage main {
+    margin: calc(var(--percentage) / 100);
+}
+#homepage main a {
+    font-size: calc(var(--textSize) * 2);
+}
