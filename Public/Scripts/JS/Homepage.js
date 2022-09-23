@@ -28,7 +28,7 @@ class Main extends Application {
     render() {
         return (
             <main>
-                <a href="/Downloads" class="fa fa-download"></a>
+                <a href="/Dashboard" class="fa fa-tachometer"></a>
             </main>
         );
     }

@@ -6,8 +6,8 @@ Application = Flask(__name__, static_folder='Public', static_url_path='/Public')
 @Application.route('/', methods = ['GET'])
 def homepage():
     return Application.send_static_file('Pages/Homepage.html')
-@Application.route('/Downloads', methods = ['GET'])
+@Application.route('/Dashboard', methods = ['GET'])
 def downloads():
-    return Application.send_static_file('Pages/Downloads.html')
+    return Application.send_static_file('Pages/Dashboard.html')
 # Running the application
 Application.run(debug=True)
