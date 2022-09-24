@@ -156,6 +156,7 @@ class Form extends Main {
                     placeholder="Video's URL"
                     value={this.state.videoURL}
                     onChange={this.handleChange.bind(this)}
+                    autocomplete="off"
                     required
                 />
                 <input
@@ -164,6 +165,7 @@ class Form extends Main {
                     placeholder="Category"
                     value={this.state.category}
                     onChange={this.handleChange.bind(this)}
+                    autocomplete="off"
                     required
                 />
                 <button class="fa fa-download"></button>
