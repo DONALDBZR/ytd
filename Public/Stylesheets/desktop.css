@@ -17,3 +17,20 @@ body {
 #homepage main a {
     font-size: calc(var(--textSize) * 2);
 }
+#dashboard main {
+    margin: calc(var(--percentage) / 100) cacl(var(--percentage) * 0);
+}
+#dashboard main form {
+    width: calc(var(--percentage) * 0.9);
+    margin: calc(var(--percentage) * 0) calc(var(--percentage) / 20);
+}
+#dashboard main form input,
+#dashboard main form button {
+    font-size: var(--textSize);
+}
+#dashboard main form input[type="url"] {
+    width: calc(var(--percentage) / 3);
+}
+#dashboard main form input[type="text"] {
+    width: calc(var(--percentage) / 8);
+}

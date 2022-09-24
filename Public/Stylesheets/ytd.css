@@ -27,3 +27,23 @@
 #dashboard header a:hover {
     opacity: var(--percentage);
 }
+#dashboard main form {
+    display: flex;
+    justify-content: space-evenly;
+}
+#dashboard main form button {
+    border: none;
+    background: none;
+    color: var(--color2);
+    cursor: pointer;
+}
+#dashboard main form button:hover {
+    color: var(--color1);
+}
+#dashboard main form input {
+    color: var(--color2);
+    font-weight: bold;
+}
+#dashboard main form input::placeholder {
+    opacity: calc(var(--percentage) * (2 / 3));
+}
