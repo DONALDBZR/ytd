@@ -1,22 +1,13 @@
 # Importing Flask
 from flask import Flask
-# Importing the database handler
-from flaskext.mysql import MySQL
-# Importing the ENV File
-from Environment import Environment
+# Importing the Database Handler
+from Database import Database
 # Importing JSON
 import json
 # Instantiating Flask as the application 
 Application = Flask(__name__, static_folder='Public', static_url_path='/Public')
-# Instantiating the database handler
-DatabaseHandler = MySQL()
-# Configuring the application
-Application.config['MYSQL_DATABASE_USER'] = Environment.USERNAME
-Application.config['MYSQL_DATABASE_PASSWORD'] = Environment.PASSWORD
-Application.config['MYSQL_DATABASE_DB'] = Environment.DATABASE
-Application.config['MYSQL_DATABASE_HOST'] = Environment.HOST
-# Initializing the database handler
-DatabaseHandler.init_app(Application)
+# Instantiating the Database Handler
+DatabaseHandler = Database()
 # Routing
 @Application.route('/', methods = ['GET'])
 def homepage():
@@ -28,10 +19,18 @@ def dashboard():
 
 @Application.route('/Downloads', methods = ['GET'])
 def getDownloads():
-    databaseConnection = DatabaseHandler.connect()
-    cursor = databaseConnection.cursor()
-    cursor.execute("SELECT * FROM YouTubeDownloader.Downloads")
-    data = cursor.fetchall()
+    data = []
+    DatabaseHandler.query("SELECT * FROM YouTubeDownloader.Downloads", None)
+    results = DatabaseHandler.resultSet()
+    for index in range(0, len(results), 1):
+        record = {
+            "id": results[index][0],
+            "artist": results[index][1],
+            "title": results[index][2],
+            "size": results[index][3],
+            "category": results[index][4]
+        }
+        data.append(record)
     return json.dumps(data)
 # Running the application
 Application.run(debug=True)
