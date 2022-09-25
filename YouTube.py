@@ -1,7 +1,10 @@
 # Importing YouTube
 from pytube import YouTube
+from pytube.cli import on_progress
 # Importing the database handler
 from Database import Database
+# Importing Music
+from Music import Music
 # YTD class
 class YTD:
     def __init__(self):
@@ -20,6 +23,11 @@ class YTD:
         # Title of the video
         # TYPE: String
         self.__title = ""
+        # Chunk size needed
+        self.__chunkSize = 1024
+        # Updating the data in the database
+        # TYPE: Music
+        self._Music = Music()
 
     def getLink(self):
         return self.__link
@@ -41,14 +49,15 @@ class YTD:
     def setTitle(self, title: str):
         self.__title = title
 
+
     def verifyTitle(self) -> str | None:
-        self.video = YouTube(self.getLink())
+        self.video = YouTube(self.getLink(), on_progress_callback=on_progress)
         self.setArtist(self.video.title.split(" - ")[0])
         self.setTitle(self.video.title.split(" - ")[1])
         parameters = (self.getArtist(), self.getTitle())
         self._Database.query("SELECT * FROM YouTubeDownloader.Downloads WHERE DownloadsArtist = %s AND DownloadsTitle = %s", parameters)
         if len(self._Database.resultSet()) > 0:
-            return "The song already exists"
+            print("The song already exists")
         else:
             # Verifying the category of the media content
             self.verifyCategory()
@@ -63,4 +72,4 @@ class YTD:
 
     def download(self) -> str:
         self._stream.download('C:\Apache24\htdocs\ytd.local\Videos')
-        return "Media file downloaded!"
+        print("Media file downloaded!")
