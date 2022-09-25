@@ -78,9 +78,6 @@ class Main extends Application {
     constructor(props) {
         super(props);
     }
-    componentDidMount() {
-        this.retrieveData()
-    }
     /**
      * @returns {JSX} Component
      */
