@@ -20,8 +20,6 @@ class Music:
         # The Database Handler
         # TYPE: Database
         self._Database = Database()
-        # Organizing the files inside of the directory
-        self.organiseFiles()
 
     def organiseFiles(self):
         for index in range(0, len(self.__files), 1):
