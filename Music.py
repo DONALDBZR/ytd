@@ -111,5 +111,3 @@ class Music:
                         record = (DownloadsArtist, DownloadsTitle, DownloadsSize, DownloadsCategory)
                         self._Database.query("INSERT INTO YouTubeDownloader.Downloads(DownloadsArtist, DownloadsTitle, DownloadsSize, DownloadsCategory) VALUES (%s, %s, %s, %s)", record)
                         self._Database.execute()
-
-main = Music()
