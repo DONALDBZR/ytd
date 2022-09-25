@@ -9,11 +9,6 @@ class Application extends React.Component {
          */
         this.state = {
             /**
-             * The content that has been downloaded from YouTube
-             * @type {JSON[]}
-             */
-            downloads: [],
-            /**
              * The URL of the video
              * @type {string}
              */
@@ -41,21 +36,6 @@ class Application extends React.Component {
         };
     }
     /**
-     * Retriecing the JSON that is sent by the back-end for the front-end to use
-     */
-    retrieveData() {
-        fetch("/Downloads", {
-            method: "GET"
-        })
-            .then((response) => response.json())
-            .then((data) => this.setState({
-                downloads: data.downloads
-            }));
-    }
-    componentDidMount() {
-        this.retrieveData()
-    }
-    /**
      * Verifying the video's URL
      */
     verifyVideoURL() {
@@ -69,7 +49,7 @@ class Application extends React.Component {
      * Verifying the category of the video that will be downloaded
      */
     verifyCategory() {
-        if (this.state.category == 'music' || this.state.category == 'video') {
+        if (this.state.category == 'Music' || this.state.category == 'Video') {
             return true;
         } else {
             return false;
@@ -134,15 +114,42 @@ class Form extends Main {
      */
     handleSubmit(event) {
         event.preventDefault();
-        if (this.verifyVideoURL() && this.verifyCategory()) {
-
+        if (this.verifyVideoURL()) {
+            if (this.verifyCategory()) {
+                fetch("/Downloads", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        videoURL: this.state.videoURL,
+                        category: this.state.category,
+                    }),
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                })
+                    .then((response) => response.json())
+                    .then((data) => this.setState({
+                        success: data.success,
+                        message: data.message,
+                        url: data.url,
+                    }))
+                    .then(() => this.redirector(delay));
+            } else {
+                this.setState({
+                    message: "That type of media does not exist!",
+                    success: false,
+                });
+            }
         } else {
             this.setState({
-                message: "The form must be filled correctly!",
+                message: "It is not a video from YouTube!",
                 success: false,
-                url: "/Dashboard",
             });
         }
+    }
+    redirector(delay) {
+        setTimeout(() => {
+            window.location.href = this.state.url;
+        }, delay);
     }
     /**
      * @returns {JSX} Component
