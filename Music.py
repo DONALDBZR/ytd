@@ -22,12 +22,14 @@ class Music:
         self._Database = Database()
         # Organizing the files inside of the directory
         self.organiseFiles()
+
     def organiseFiles(self):
         for index in range(0, len(self.__files), 1):
             if self.__files[index].endswith(".mp3"):
                 self.__musicFiles.append(self.__files[index].replace(".mp3", ""))
         # Removing files without proper titles
         self.removeFilesWithoutTitles()
+
     def removeFilesWithoutTitles(self):
         filesWithOnlyTitles = []
         for index in range(0, len(self.__musicFiles), 1):
@@ -36,6 +38,7 @@ class Music:
         self.__musicFiles = filesWithOnlyTitles
         # Keeping only the files that have {Artist} - {Title}
         self.reworkFiles()
+
     def reworkFiles(self):
         filesWithProperTitles = []
         for index in range(0, len(self.__musicFiles), 1):
@@ -45,6 +48,7 @@ class Music:
         self.__musicFiles = filesWithProperTitles
         # Getting the size of the file
         self.getSize()
+
     def getSize(self):
         fileWithSize = []
         file = ""
@@ -58,6 +62,7 @@ class Music:
         self.__musicFiles = fileWithSize
         # Adding the category of the content
         self.categorize()
+
     def categorize(self):
         newList = []
         file = ""
@@ -67,12 +72,14 @@ class Music:
         self.__musicFiles = newList
         # Building the record
         self.buildRecord()
+
     def calculateSize(self, size):
         sizeName = ["B", "KB", "MB", "GB"]
         index = math.floor(math.log(size, 1024))
         limit = math.pow(1024, index)
         fileSize = round(size / limit, 3)
         return str(fileSize) + " " + sizeName[index]
+
     def buildRecord(self):
         record = []
         for index in range(0, len(self.__musicFiles), 1):
@@ -80,6 +87,7 @@ class Music:
         self.__musicFiles = record
         # Updating the data
         self.update()
+
     def update(self):
         self._Database.query("SELECT * FROM YouTubeDownloader.Downloads", None)
         downloads = self._Database.resultSet()
@@ -93,5 +101,15 @@ class Music:
                     self._Database.query("INSERT INTO YouTubeDownloader.Downloads(DownloadsArtist, DownloadsTitle, DownloadsSize, DownloadsCategory) VALUES (%s, %s, %s, %s)", record)
                     self._Database.execute()
         else:
-            print(downloads)
+            for firstIndex in range(0, len(self.__musicFiles), 1):
+                for secondIndex in range(0, len(downloads), 1):
+                    if self.__musicFiles[firstIndex][0] != downloads[secondIndex][1] and self.__musicFiles[firstIndex][1] != downloads[secondIndex][2]:
+                        DownloadsArtist = self.__musicFiles[firstIndex][0]
+                        DownloadsTitle = self.__musicFiles[firstIndex][1]
+                        DownloadsSize = self.__musicFiles[firstIndex][2]
+                        DownloadsCategory = self.__musicFiles[firstIndex][3]
+                        record = (DownloadsArtist, DownloadsTitle, DownloadsSize, DownloadsCategory)
+                        self._Database.query("INSERT INTO YouTubeDownloader.Downloads(DownloadsArtist, DownloadsTitle, DownloadsSize, DownloadsCategory) VALUES (%s, %s, %s, %s)", record)
+                        self._Database.execute()
+
 main = Music()
